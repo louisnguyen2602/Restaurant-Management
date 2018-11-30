@@ -48,5 +48,45 @@ namespace RestaurantManagement.DAO
         {
             DataProvider.Instance.ExecuteQuery("usp_SwitchTable @idTable1, @idTable2", new object[] { id1, id2 });
         }
+
+        public List<Table> GetListTable()
+        {
+            List<Table> list = new List<Table>();
+
+            string query = "select * from FoodTable";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Table Table = new Table(item);
+                list.Add(Table);
+            }
+            return list;
+        }
+
+        public bool InsertTable(string name, string status)
+        {
+            string query = string.Format("insert dbo.FoodTable (Name, Status) values (N'{0}',N'{1}')", name, status);
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateTable(int id, string name, string status)
+        {
+            string query = string.Format("update dbo.FoodTable set Name = N'{1}', Status = N'{2}' where ID = {0}",id, name, status );
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool DeleteTable(int id)
+        {
+            BillDAO.Instance.DeleteBillByIdTable(id);
+            string query = string.Format("Delete FoodTable where id = {0}", id);
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
     }
 }

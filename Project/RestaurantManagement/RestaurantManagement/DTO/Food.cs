@@ -25,11 +25,18 @@ namespace RestaurantManagement.DTO
             this.Price = (float)Convert.ToDouble(row["price"].ToString());
         }
 
-        private float price;
-        public float Price
+        private int id;
+        public int ID
         {
-            get { return price; }
-            set { price = value; }
+            get { return id; }
+            set { id = value; }
+        }
+
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         private int categoryID;
@@ -39,19 +46,11 @@ namespace RestaurantManagement.DTO
             set { categoryID = value; }
         }
 
-        private string name;
-        public string Name
+        private float price;
+        public float Price
         {
-            get { return name; }
-            set { name = value; }
+            get { return price; }
+            set { price = value; }
         }
-        
-        private int id;
-        public int ID
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
     }
 }

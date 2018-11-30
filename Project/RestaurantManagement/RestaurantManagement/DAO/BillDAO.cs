@@ -66,10 +66,30 @@ namespace RestaurantManagement.DAO
             }
         }
 
-        public void CheckOut(int id, int discount)
+        public void CheckOut(int id, int discount,float totalPrice)
         {
-            string query = "update dbo.Bill set status = 1, " + " discount = " + discount + " where id = " + id;
+            string query = "update dbo.Bill set dateCheckOut = GETDATE(), status = 1, " + " discount = " + discount + ", totalPrice = " + totalPrice + " where id = " + id;
             DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
+        public DataTable GetBillListByDate(DateTime checkIn,DateTime checkOut)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec usp_GetListBillByDate @checkIn, @checkOut", new object[] { checkIn, checkOut });
+        }
+
+        public DataTable GetBillListByDateAndPage(DateTime checkIn, DateTime checkOut, int pageNum)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec usp_GetListBillByDateAndPage @checkIn, @checkOut, @page", new object[] { checkIn, checkOut, pageNum });
+        }
+
+        public int GetNumBillListByDate(DateTime checkIn, DateTime checkOut)
+        {
+            return (int)DataProvider.Instance.ExecuteScalar("exec usp_GetNumBillByDate @checkIn, @checkOut", new object[] { checkIn, checkOut });
+        }
+
+        public void DeleteBillByIdTable(int id)
+        {
+            DataProvider.Instance.ExecuteQuery("delete dbo.Bill where idTable =  " + id);
         }
     }
 }

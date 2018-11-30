@@ -44,8 +44,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.txbRetypePass = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnUpdate = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btnExit = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -58,14 +58,17 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.txbUserName);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(12, 27);
+            this.panel2.Location = new System.Drawing.Point(12, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(528, 74);
+            this.panel2.Size = new System.Drawing.Size(528, 98);
             this.panel2.TabIndex = 1;
+            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
+            this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseUp);
             // 
             // txbUserName
             // 
-            this.txbUserName.Location = new System.Drawing.Point(113, 31);
+            this.txbUserName.Location = new System.Drawing.Point(113, 57);
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.ReadOnly = true;
             this.txbUserName.Size = new System.Drawing.Size(311, 26);
@@ -76,7 +79,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(109, 9);
+            this.label1.Location = new System.Drawing.Point(109, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 19);
             this.label1.TabIndex = 0;
@@ -199,54 +202,23 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.ActiveBorderThickness = 1;
-            this.btnUpdate.ActiveCornerRadius = 20;
-            this.btnUpdate.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(218)))), ((int)(((byte)(146)))));
-            this.btnUpdate.ActiveForecolor = System.Drawing.Color.Black;
-            this.btnUpdate.ActiveLineColor = System.Drawing.Color.Transparent;
-            this.btnUpdate.BackColor = System.Drawing.Color.Transparent;
-            this.btnUpdate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUpdate.BackgroundImage")));
-            this.btnUpdate.ButtonText = "Update";
-            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.Black;
-            this.btnUpdate.IdleBorderThickness = 1;
-            this.btnUpdate.IdleCornerRadius = 20;
-            this.btnUpdate.IdleFillColor = System.Drawing.Color.White;
-            this.btnUpdate.IdleForecolor = System.Drawing.Color.Black;
-            this.btnUpdate.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(80)))), ((int)(((byte)(222)))));
-            this.btnUpdate.Location = new System.Drawing.Point(167, 423);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(5);
+            this.btnUpdate.Location = new System.Drawing.Point(156, 427);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(102, 41);
-            this.btnUpdate.TabIndex = 8;
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnUpdate.Size = new System.Drawing.Size(96, 42);
+            this.btnUpdate.TabIndex = 10;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnExit
             // 
-            this.btnExit.ActiveBorderThickness = 1;
-            this.btnExit.ActiveCornerRadius = 20;
-            this.btnExit.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(99)))), ((int)(((byte)(95)))));
-            this.btnExit.ActiveForecolor = System.Drawing.Color.Black;
-            this.btnExit.ActiveLineColor = System.Drawing.Color.Transparent;
-            this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
-            this.btnExit.ButtonText = "Exit";
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.Black;
-            this.btnExit.IdleBorderThickness = 1;
-            this.btnExit.IdleCornerRadius = 20;
-            this.btnExit.IdleFillColor = System.Drawing.Color.White;
-            this.btnExit.IdleForecolor = System.Drawing.Color.Black;
-            this.btnExit.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnExit.Location = new System.Drawing.Point(298, 423);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(5);
+            this.btnExit.Location = new System.Drawing.Point(301, 427);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(102, 41);
-            this.btnExit.TabIndex = 9;
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
+            this.btnExit.Size = new System.Drawing.Size(96, 42);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // AccountProfile
             // 
@@ -254,9 +226,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::RestaurantManagement.Properties.Resources._56370483_abstract_empty_dark_black_gradient_luxury_background_studio_wall_floor_and_room_backdrop_well_use_as;
             this.ClientSize = new System.Drawing.Size(562, 492);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -299,7 +271,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox txbRetypePass;
         private System.Windows.Forms.Label label5;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnUpdate;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnExit;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnExit;
     }
 }

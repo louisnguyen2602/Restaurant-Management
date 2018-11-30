@@ -181,6 +181,71 @@ go
 
 exec usp_SwitchTable @idTable1 = 3, @idTable2 = 5
 
+create proc usp_GetListBillByDate
+@checkIn date, @checkOut date
+as
+begin
+	select b.id,t.name, DateCheckIn,DateCheckOut,discount,b.totalPrice
+	from dbo.Bill as b,dbo.FoodTable as t
+	where DateCheckIn >= @checkIn and DateCheckOut <= @checkOut 
+	and b.status = 1 and t.id = b.idTable
+end
+go
+
+create proc usp_UpdateAccount
+@userName nvarchar(100), @displayName nvarchar(100),
+@password nvarchar(100), @newPassword nvarchar(100)
+as
+begin
+	declare @isRightPass int = 0
+
+	select @isRightPass = Count(*) 
+	from dbo.Account
+	where UserName = @userName and PassWord = @password
+	if(@isRightPass = 1)
+	begin
+		if(@newPassword = null or @newPassword = '')
+		begin
+			update dbo.Account set DisplayName = @displayName
+			where UserName = @userName
+		end
+		else
+			update dbo.Account set DisplayName = @displayName , PassWord = @newPassword
+			where UserName = @userName
+	end
+end
+go
+
+create PROC usp_GetListBillByDateAndPage
+@checkIn date, @checkOut date, @page int
+AS 
+BEGIN
+	DECLARE @pageRows INT = 10
+	DECLARE @selectRows INT = @pageRows
+	DECLARE @exceptRows INT = (@page - 1) * @pageRows
+	
+	;WITH BillShow AS( SELECT b.ID, t.name AS [Name], b.totalPrice AS [TotalPrice], DateCheckIn, DateCheckOut, discount AS [Discount]
+	FROM dbo.Bill AS b,dbo.FoodTable AS t
+	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut AND b.status = 1
+	AND t.id = b.idTable)
+	
+	SELECT TOP (@selectRows) * 
+	FROM BillShow 
+	WHERE id NOT IN (SELECT TOP (@exceptRows) id FROM BillShow)
+END
+GO
+
+create PROC usp_GetNumBillByDate
+@checkIn date, @checkOut date
+AS 
+BEGIN
+	SELECT COUNT(*)
+	FROM dbo.Bill AS b,dbo.FoodTable AS t
+	WHERE DateCheckIn >= @checkIn AND DateCheckOut <= @checkOut AND b.status = 1
+	AND t.id = b.idTable
+END
+GO
+
 --thêm bàn
 declare @i int = 0
 while @i < 15
@@ -363,17 +428,44 @@ begin
 end
 go
 
+create trigger UTG_DeleteBillInfo
+on dbo.BillInfo for delete
+as
+begin
+	declare @idBillInfo int
+	declare @idBill int
 
+	select @idBillInfo = id, @idBill = deleted.idBill from deleted
+
+	declare @idTable int
+
+	select @idTable = idTable from dbo.Bill where id = @idBill
+
+	declare @count int = 0
+	
+	select @count = count(*) 
+	from dbo.BillInfo as bi , dbo.Bill as b
+	where b.id = bi.idBill and b.id = @idBill and b.status = 0
+	if(@count = 0)
+		update dbo.FoodTable set status = N'NULL' where id = @idTable
+end
+go
+
+CREATE FUNCTION [dbo].[fuConvertToUnsign1] ( @strInput NVARCHAR(4000) ) RETURNS NVARCHAR(4000) AS BEGIN IF @strInput IS NULL RETURN @strInput IF @strInput = '' RETURN @strInput DECLARE @RT NVARCHAR(4000) DECLARE @SIGN_CHARS NCHAR(136) DECLARE @UNSIGN_CHARS NCHAR (136) SET @SIGN_CHARS = N'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệế ìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵý ĂÂĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍ ÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ' +NCHAR(272)+ NCHAR(208) SET @UNSIGN_CHARS = N'aadeoouaaaaaaaaaaaaaaaeeeeeeeeee iiiiiooooooooooooooouuuuuuuuuuyyyyy AADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIII OOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD' DECLARE @COUNTER int DECLARE @COUNTER1 int SET @COUNTER = 1 WHILE (@COUNTER <=LEN(@strInput)) BEGIN SET @COUNTER1 = 1 WHILE (@COUNTER1 <=LEN(@SIGN_CHARS)+1) BEGIN IF UNICODE(SUBSTRING(@SIGN_CHARS, @COUNTER1,1)) = UNICODE(SUBSTRING(@strInput,@COUNTER ,1) ) BEGIN IF @COUNTER=1 SET @strInput = SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)-1) ELSE SET @strInput = SUBSTRING(@strInput, 1, @COUNTER-1) +SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)- @COUNTER) BREAK END SET @COUNTER1 = @COUNTER1 +1 END SET @COUNTER = @COUNTER +1 END SET @strInput = replace(@strInput,' ','-') RETURN @strInput END
 
 alter table dbo.Bill
 add discount int
 
+alter table dbo.Bill
+add totalPrice float
+
 update dbo.Bill set discount = 0
 
-select * from BillInfo
-select * from Bill
-select * from FoodTable
-select * from Food
+select * from dbo.BillInfo
+select * from dbo.Bill
+select * from dbo.FoodTable
+select * from dbo.Food
+select * from dbo.Account
 
 select f.name , bi.count , f.Price, f.Price * bi.count as TotalPrice
 from dbo.BillInfo as bi, dbo.Bill as b, dbo.Food as f
@@ -382,6 +474,4 @@ where bi.idBill = b.id and bi.idFood = f.id
 delete BillInfo
 delete Bill
 
-
-
-
+select top 2 * from dbo.Bill

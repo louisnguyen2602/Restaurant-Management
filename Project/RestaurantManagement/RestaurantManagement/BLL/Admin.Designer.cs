@@ -39,13 +39,13 @@
             this.btnAddTable = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel21 = new System.Windows.Forms.Panel();
-            this.cbTableStatus = new System.Windows.Forms.ComboBox();
+            this.txbStatus = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.txbTableName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txbTableID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tpCategory = new System.Windows.Forms.TabPage();
             this.panel18 = new System.Windows.Forms.Panel();
@@ -57,7 +57,7 @@
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txbCategoryName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.txbCategoryID = new System.Windows.Forms.TextBox();
@@ -92,6 +92,11 @@
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txbPageBill = new System.Windows.Forms.TextBox();
+            this.btnLastBillPage = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnFirstBillPage = new System.Windows.Forms.Button();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tcBill = new System.Windows.Forms.TabControl();
@@ -106,7 +111,6 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.btnResetPassword = new System.Windows.Forms.Button();
             this.panel24 = new System.Windows.Forms.Panel();
-            this.cbAccountType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel25 = new System.Windows.Forms.Panel();
             this.txbDisplayName = new System.Windows.Forms.TextBox();
@@ -114,6 +118,7 @@
             this.panel26 = new System.Windows.Forms.Panel();
             this.txbUserName = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.nmType = new System.Windows.Forms.NumericUpDown();
             this.tpTable.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvTable)).BeginInit();
@@ -153,6 +158,7 @@
             this.panel24.SuspendLayout();
             this.panel25.SuspendLayout();
             this.panel26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmType)).BeginInit();
             this.SuspendLayout();
             // 
             // tpTable
@@ -178,6 +184,7 @@
             // 
             // dtgvTable
             // 
+            this.dtgvTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvTable.Location = new System.Drawing.Point(3, 3);
             this.dtgvTable.Name = "dtgvTable";
@@ -203,6 +210,7 @@
             this.btnViewTable.TabIndex = 0;
             this.btnViewTable.Text = "View";
             this.btnViewTable.UseVisualStyleBackColor = true;
+            this.btnViewTable.Click += new System.EventHandler(this.btnViewTable_Click);
             // 
             // btnEditTable
             // 
@@ -212,6 +220,7 @@
             this.btnEditTable.TabIndex = 0;
             this.btnEditTable.Text = "Edit";
             this.btnEditTable.UseVisualStyleBackColor = true;
+            this.btnEditTable.Click += new System.EventHandler(this.btnEditTable_Click);
             // 
             // btnDeleteTable
             // 
@@ -221,6 +230,7 @@
             this.btnDeleteTable.TabIndex = 0;
             this.btnDeleteTable.Text = "Delete";
             this.btnDeleteTable.UseVisualStyleBackColor = true;
+            this.btnDeleteTable.Click += new System.EventHandler(this.btnDeleteTable_Click);
             // 
             // btnAddTable
             // 
@@ -230,6 +240,7 @@
             this.btnAddTable.TabIndex = 0;
             this.btnAddTable.Text = "Add";
             this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
             // panel11
             // 
@@ -243,20 +254,19 @@
             // 
             // panel21
             // 
-            this.panel21.Controls.Add(this.cbTableStatus);
+            this.panel21.Controls.Add(this.txbStatus);
             this.panel21.Controls.Add(this.label9);
             this.panel21.Location = new System.Drawing.Point(3, 171);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(299, 60);
             this.panel21.TabIndex = 1;
             // 
-            // cbTableStatus
+            // txbStatus
             // 
-            this.cbTableStatus.FormattingEnabled = true;
-            this.cbTableStatus.Location = new System.Drawing.Point(35, 32);
-            this.cbTableStatus.Name = "cbTableStatus";
-            this.cbTableStatus.Size = new System.Drawing.Size(247, 21);
-            this.cbTableStatus.TabIndex = 1;
+            this.txbStatus.Location = new System.Drawing.Point(35, 31);
+            this.txbStatus.Name = "txbStatus";
+            this.txbStatus.Size = new System.Drawing.Size(247, 20);
+            this.txbStatus.TabIndex = 1;
             // 
             // label9
             // 
@@ -281,7 +291,6 @@
             // 
             this.txbTableName.Location = new System.Drawing.Point(35, 31);
             this.txbTableName.Name = "txbTableName";
-            this.txbTableName.ReadOnly = true;
             this.txbTableName.Size = new System.Drawing.Size(247, 20);
             this.txbTableName.TabIndex = 1;
             // 
@@ -297,20 +306,20 @@
             // 
             // panel14
             // 
-            this.panel14.Controls.Add(this.textBox3);
+            this.panel14.Controls.Add(this.txbTableID);
             this.panel14.Controls.Add(this.label6);
             this.panel14.Location = new System.Drawing.Point(3, 17);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(299, 60);
             this.panel14.TabIndex = 1;
             // 
-            // textBox3
+            // txbTableID
             // 
-            this.textBox3.Location = new System.Drawing.Point(35, 31);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(247, 20);
-            this.textBox3.TabIndex = 1;
+            this.txbTableID.Location = new System.Drawing.Point(35, 31);
+            this.txbTableID.Name = "txbTableID";
+            this.txbTableID.ReadOnly = true;
+            this.txbTableID.Size = new System.Drawing.Size(247, 20);
+            this.txbTableID.TabIndex = 1;
             // 
             // label6
             // 
@@ -345,6 +354,7 @@
             // 
             // dtgvCategory
             // 
+            this.dtgvCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCategory.Location = new System.Drawing.Point(3, 3);
             this.dtgvCategory.Name = "dtgvCategory";
@@ -370,6 +380,7 @@
             this.btnViewCategory.TabIndex = 0;
             this.btnViewCategory.Text = "View";
             this.btnViewCategory.UseVisualStyleBackColor = true;
+            this.btnViewCategory.Click += new System.EventHandler(this.btnViewCategory_Click);
             // 
             // btnEditCategory
             // 
@@ -409,20 +420,19 @@
             // 
             // panel15
             // 
-            this.panel15.Controls.Add(this.textBox2);
+            this.panel15.Controls.Add(this.txbCategoryName);
             this.panel15.Controls.Add(this.label7);
             this.panel15.Location = new System.Drawing.Point(3, 94);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(299, 60);
             this.panel15.TabIndex = 1;
             // 
-            // textBox2
+            // txbCategoryName
             // 
-            this.textBox2.Location = new System.Drawing.Point(35, 31);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(247, 20);
-            this.textBox2.TabIndex = 1;
+            this.txbCategoryName.Location = new System.Drawing.Point(35, 31);
+            this.txbCategoryName.Name = "txbCategoryName";
+            this.txbCategoryName.Size = new System.Drawing.Size(247, 20);
+            this.txbCategoryName.TabIndex = 1;
             // 
             // label7
             // 
@@ -499,6 +509,7 @@
             this.btnFindFood.TabIndex = 0;
             this.btnFindFood.Text = "Find";
             this.btnFindFood.UseVisualStyleBackColor = true;
+            this.btnFindFood.Click += new System.EventHandler(this.btnFindFood_Click);
             // 
             // panel5
             // 
@@ -582,7 +593,6 @@
             // 
             this.txbFoodName.Location = new System.Drawing.Point(35, 31);
             this.txbFoodName.Name = "txbFoodName";
-            this.txbFoodName.ReadOnly = true;
             this.txbFoodName.Size = new System.Drawing.Size(247, 20);
             this.txbFoodName.TabIndex = 1;
             // 
@@ -612,6 +622,7 @@
             this.txbFoodID.ReadOnly = true;
             this.txbFoodID.Size = new System.Drawing.Size(247, 20);
             this.txbFoodID.TabIndex = 1;
+            this.txbFoodID.TextChanged += new System.EventHandler(this.txbFoodID_TextChanged);
             // 
             // label1
             // 
@@ -642,6 +653,7 @@
             this.btnViewFood.TabIndex = 0;
             this.btnViewFood.Text = "View";
             this.btnViewFood.UseVisualStyleBackColor = true;
+            this.btnViewFood.Click += new System.EventHandler(this.btnViewFood_Click);
             // 
             // btnEditFood
             // 
@@ -651,6 +663,7 @@
             this.btnEditFood.TabIndex = 0;
             this.btnEditFood.Text = "Edit";
             this.btnEditFood.UseVisualStyleBackColor = true;
+            this.btnEditFood.Click += new System.EventHandler(this.btnEditFood_Click);
             // 
             // btnDeleteFood
             // 
@@ -660,6 +673,7 @@
             this.btnDeleteFood.TabIndex = 0;
             this.btnDeleteFood.Text = "Delete";
             this.btnDeleteFood.UseVisualStyleBackColor = true;
+            this.btnDeleteFood.Click += new System.EventHandler(this.btnDeleteFood_Click);
             // 
             // btnAddFood
             // 
@@ -669,6 +683,7 @@
             this.btnAddFood.TabIndex = 0;
             this.btnAddFood.Text = "Add";
             this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // panel3
             // 
@@ -717,6 +732,7 @@
             this.btnView.TabIndex = 2;
             this.btnView.Text = "View";
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // dtpkToDate
             // 
@@ -734,6 +750,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txbPageBill);
+            this.panel1.Controls.Add(this.btnLastBillPage);
+            this.panel1.Controls.Add(this.btnNext);
+            this.panel1.Controls.Add(this.btnPrevious);
+            this.panel1.Controls.Add(this.btnFirstBillPage);
             this.panel1.Controls.Add(this.dtgvBill);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(6, 87);
@@ -741,12 +762,68 @@
             this.panel1.Size = new System.Drawing.Size(692, 385);
             this.panel1.TabIndex = 0;
             // 
+            // txbPageBill
+            // 
+            this.txbPageBill.Location = new System.Drawing.Point(312, 347);
+            this.txbPageBill.Name = "txbPageBill";
+            this.txbPageBill.ReadOnly = true;
+            this.txbPageBill.Size = new System.Drawing.Size(77, 20);
+            this.txbPageBill.TabIndex = 3;
+            this.txbPageBill.Text = "1";
+            this.txbPageBill.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txbPageBill.TextChanged += new System.EventHandler(this.txbPageBill_TextChanged);
+            // 
+            // btnLastBillPage
+            // 
+            this.btnLastBillPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLastBillPage.Location = new System.Drawing.Point(594, 338);
+            this.btnLastBillPage.Name = "btnLastBillPage";
+            this.btnLastBillPage.Size = new System.Drawing.Size(81, 35);
+            this.btnLastBillPage.TabIndex = 2;
+            this.btnLastBillPage.Text = "Last";
+            this.btnLastBillPage.UseVisualStyleBackColor = true;
+            this.btnLastBillPage.Click += new System.EventHandler(this.btnLastBillPage_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(437, 338);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(81, 35);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevious.Location = new System.Drawing.Point(175, 338);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(91, 35);
+            this.btnPrevious.TabIndex = 2;
+            this.btnPrevious.Text = "Previous";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnFirstBillPage
+            // 
+            this.btnFirstBillPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFirstBillPage.Location = new System.Drawing.Point(18, 338);
+            this.btnFirstBillPage.Name = "btnFirstBillPage";
+            this.btnFirstBillPage.Size = new System.Drawing.Size(81, 35);
+            this.btnFirstBillPage.TabIndex = 2;
+            this.btnFirstBillPage.Text = "First";
+            this.btnFirstBillPage.UseVisualStyleBackColor = true;
+            this.btnFirstBillPage.Click += new System.EventHandler(this.btnFirstBillPage_Click);
+            // 
             // dtgvBill
             // 
+            this.dtgvBill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvBill.Location = new System.Drawing.Point(3, 3);
             this.dtgvBill.Name = "dtgvBill";
-            this.dtgvBill.Size = new System.Drawing.Size(686, 379);
+            this.dtgvBill.Size = new System.Drawing.Size(686, 295);
             this.dtgvBill.TabIndex = 0;
             // 
             // button1
@@ -803,6 +880,7 @@
             this.btnViewAccount.TabIndex = 0;
             this.btnViewAccount.Text = "View";
             this.btnViewAccount.UseVisualStyleBackColor = true;
+            this.btnViewAccount.Click += new System.EventHandler(this.btnViewAccount_Click);
             // 
             // btnEditAccount
             // 
@@ -812,6 +890,7 @@
             this.btnEditAccount.TabIndex = 0;
             this.btnEditAccount.Text = "Edit";
             this.btnEditAccount.UseVisualStyleBackColor = true;
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // btnDeleteAccount
             // 
@@ -821,6 +900,7 @@
             this.btnDeleteAccount.TabIndex = 0;
             this.btnDeleteAccount.Text = "Delete";
             this.btnDeleteAccount.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
             // 
             // btnAddAccount
             // 
@@ -830,6 +910,7 @@
             this.btnAddAccount.TabIndex = 0;
             this.btnAddAccount.Text = "Add";
             this.btnAddAccount.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
             // panel27
             // 
@@ -841,6 +922,7 @@
             // 
             // dtgvAccount
             // 
+            this.dtgvAccount.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvAccount.Location = new System.Drawing.Point(3, 3);
             this.dtgvAccount.Name = "dtgvAccount";
@@ -866,23 +948,16 @@
             this.btnResetPassword.TabIndex = 0;
             this.btnResetPassword.Text = "Reset Password";
             this.btnResetPassword.UseVisualStyleBackColor = true;
+            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
             // panel24
             // 
-            this.panel24.Controls.Add(this.cbAccountType);
+            this.panel24.Controls.Add(this.nmType);
             this.panel24.Controls.Add(this.label11);
             this.panel24.Location = new System.Drawing.Point(3, 173);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(299, 60);
             this.panel24.TabIndex = 1;
-            // 
-            // cbAccountType
-            // 
-            this.cbAccountType.FormattingEnabled = true;
-            this.cbAccountType.Location = new System.Drawing.Point(35, 31);
-            this.cbAccountType.Name = "cbAccountType";
-            this.cbAccountType.Size = new System.Drawing.Size(247, 21);
-            this.cbAccountType.TabIndex = 1;
             // 
             // label11
             // 
@@ -907,7 +982,6 @@
             // 
             this.txbDisplayName.Location = new System.Drawing.Point(35, 31);
             this.txbDisplayName.Name = "txbDisplayName";
-            this.txbDisplayName.ReadOnly = true;
             this.txbDisplayName.Size = new System.Drawing.Size(247, 20);
             this.txbDisplayName.TabIndex = 1;
             // 
@@ -934,7 +1008,6 @@
             // 
             this.txbUserName.Location = new System.Drawing.Point(35, 31);
             this.txbUserName.Name = "txbUserName";
-            this.txbUserName.ReadOnly = true;
             this.txbUserName.Size = new System.Drawing.Size(247, 20);
             this.txbUserName.TabIndex = 1;
             // 
@@ -948,6 +1021,18 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "UserName:";
             // 
+            // nmType
+            // 
+            this.nmType.Location = new System.Drawing.Point(35, 32);
+            this.nmType.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmType.Name = "nmType";
+            this.nmType.Size = new System.Drawing.Size(82, 20);
+            this.nmType.TabIndex = 1;
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -956,6 +1041,8 @@
             this.ClientSize = new System.Drawing.Size(736, 528);
             this.Controls.Add(this.tcBill);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ADMIN";
@@ -998,6 +1085,7 @@
             this.tpBill.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvBill)).EndInit();
             this.tcBill.ResumeLayout(false);
             this.tpAccount.ResumeLayout(false);
@@ -1011,6 +1099,7 @@
             this.panel25.PerformLayout();
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmType)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1061,13 +1150,12 @@
         private System.Windows.Forms.Button btnAddTable;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.ComboBox cbTableStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.TextBox txbTableName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txbTableID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.DataGridView dtgvCategory;
@@ -1078,7 +1166,7 @@
         private System.Windows.Forms.Button btnAddCategory;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbCategoryName;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.TextBox txbCategoryID;
@@ -1093,7 +1181,6 @@
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Button btnResetPassword;
         private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.ComboBox cbAccountType;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.TextBox txbDisplayName;
@@ -1102,5 +1189,12 @@
         private System.Windows.Forms.TextBox txbUserName;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txbStatus;
+        private System.Windows.Forms.Button btnLastBillPage;
+        private System.Windows.Forms.Button btnFirstBillPage;
+        private System.Windows.Forms.TextBox txbPageBill;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.NumericUpDown nmType;
     }
 }

@@ -23,18 +23,18 @@ namespace RestaurantManagement.DTO
             this.Status = row["status"].ToString();
         }
 
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
         private int iD;
         public int ID
         {
             get { return iD; }
             set { iD = value; }
+        }
+
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         private string status;

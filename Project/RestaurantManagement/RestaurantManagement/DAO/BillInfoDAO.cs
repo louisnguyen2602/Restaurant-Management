@@ -50,5 +50,10 @@ namespace RestaurantManagement.DAO
         {
             DataProvider.Instance.ExecuteNonQuery("exec usp_InsertBillInfo @idBill , @idFood , @count ", new object[] { idBill, idFood, count });
         }
+
+        public void DeleteBillInfoByFoodID(int id)
+        {
+            DataProvider.Instance.ExecuteQuery("delete dbo.BillInfo where idFood =  " + id);
+        }
     }
 }
